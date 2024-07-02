@@ -1,0 +1,54 @@
+Question Link : "https://www.geeksforgeeks.org/problems/rotate-array-by-n-elements-1587115621/1?page=1&category=Arrays&difficulty=Easy&sortBy=submissions"
+
+Question is :
+
+Rotate Array
+
+Given an unsorted array arr[] of size n. Rotate the array to the left (counter-clockwise direction) by d steps, where d is a positive integer. 
+
+Examples :
+Input: n = 5, d = 2 arr[] = {1,2,3,4,5}
+Output: 3 4 5 1 2
+Explanation: 1 2 3 4 5  when rotated by 2 elements, it becomes 3 4 5 1 2.
+Example 2:
+
+Input: n = 10, d = 3 arr[] = {2,4,6,8,10,12,14,16,18,20}
+Output: 8 10 12 14 16 18 20 2 4 6
+Explanation: 2 4 6 8 10 12 14 16 18 20 when rotated by 3 elements, it becomes 8 10 12 14 16 18 20 2 4 6.
+
+Your Task:
+You need not print or read anything. You need to complete the function rotateArr() which takes the array, d and n as input parameters and rotates the array by d elements. 
+The array must be modified in-place without using extra space.
+
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1 <= n <= 106
+1 <= d <= 106
+0 <= arr[i] <= 105
+
+
+// My Approach and Code is :
+
+class Solution{
+    
+    public:
+    void rotateArr(int arr[], int d, int n){
+
+        d=d%n;
+
+        // we will take temporary array and will store the rotated data.
+        vector<int>temp(n);
+        
+        for(int i=0;i<n;i++){
+            temp[(i+n-d)%n]=arr[i];  // input : {1,2,3,4,5} then i=0 -> temp[(0+5-2)%5]=arr[0] means temp[3]=1. i=1 -> temp[(1+5-2)%5]=arr[1] means temp[4]=2. i=2 -> temp[(2+5-2)%5]=arr[2] means temp[0]=3. i=3 -> temp[(3+5-2)%5]=arr[3] means temp[1]=4. i=4 -> temp[(4+5-2)%5]=arr[4] means temp[2]=5.  
+        }
+
+        // now we have rotated data in temp {3,4,5,1,2}.
+        for(int i=0;i<n;i++){
+            arr[i]=temp[i];
+        }
+        
+    }
+};
