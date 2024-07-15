@@ -1,0 +1,56 @@
+Question Link : "https://www.geeksforgeeks.org/problems/preorder-traversal/1?page=1&category=Tree&difficulty=Basic&sortBy=submissions"
+
+Question is : Preorder Traversal
+
+Given a binary tree, find its preorder traversal.
+
+Example 1:
+Input:
+        1      
+      /          
+    4    
+  /    \   
+4       2
+Output: 1 4 4 2 
+
+Your Task:
+You just have to complete the function preorder() which takes the root node of the tree as input and returns an array containing the preorder traversal of the tree.
+
+Expected Time Complexity: O(N).
+Expected Auxiliary Space: O(N).
+
+Constraints:
+1 <= Number of nodes <= 104
+0 <= Data of a node <= 105
+
+// My CODE and Approach is :
+
+void traversal(Node*root,vector<int>&ans){
+
+    // step3: it check root is NULL or NOT.
+    if(root==NULL){
+        return;
+    }
+
+    // if root is Not NULL then it push root data in temp array.
+    ans.push_back(root->data);
+
+    // After push data it visits left and push data until root NULL.
+    traversal(root->left,ans);
+
+    // After traversing in left root is NULL then it visits root->right and it push data in temp array until root NULL.
+    traversal(root->right,ans);
+}
+
+vector <int> preorder(Node* root)
+{
+
+  // Step1: first we will take temporary array to store data of preorder. in preorder first visit ROOT then LEFT then RIGHT.
+  vector<int>ans;
+
+  // step:2 we will pass to function.
+  traversal(root,ans);
+
+  // After complete function we will have preorder data in temp Array and we will return.
+  return ans;
+}
