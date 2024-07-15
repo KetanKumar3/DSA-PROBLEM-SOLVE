@@ -1,0 +1,39 @@
+Question Link is : "https://leetcode.com/problems/root-equals-sum-of-children/description/"
+
+Que is : Root Equals Sum Of Children
+You are given the root of a binary tree that consists of exactly 3 nodes: the root, its left child, and its right child.
+Return true if the value of the root is equal to the sum of the values of its two children, or false otherwise.
+
+ Example 1:
+Input: root = [10,4,6]
+Output: true
+Explanation: The values of the root, its left child, and its right child are 10, 4, and 6, respectively.
+10 is equal to 4 + 6, so we return true.
+Example 2:
+
+Input: root = [5,3,1]
+Output: false
+Explanation: The values of the root, its left child, and its right child are 5, 3, and 1, respectively.
+5 is not equal to 3 + 1, so we return false.
+
+
+// My CODE and Approach is 
+
+class Solution {
+public:
+    bool checkTree(TreeNode* root) {
+        // first we will take variable sum to store sum value.
+        int sum=0;
+
+        // we will check left or right present or not of root. if present then we will sum.
+        if(root->left && root->right){
+            sum=root->left->val+root->right->val;
+        }
+
+        // After that we will have sum of left and right and we will match if sum and root equals then it will give true otherwise it will give false.
+        if(sum==root->val){
+            return true;
+        }
+        return false;
+    }
+};
