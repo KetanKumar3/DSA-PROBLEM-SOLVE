@@ -1,0 +1,67 @@
+Question Link : "https://www.geeksforgeeks.org/problems/minimum-element-in-bst/1?page=1&category=Tree&difficulty=Basic&sortBy=submissions"
+
+Question is : Minimum element in BST
+
+Given the root of a Binary Search Tree. The task is to find the minimum valued element in this given BST.
+
+Example 1:
+Input:
+           5
+         /    \
+        4      6
+       /        \
+      3          7
+     /
+    1
+
+Output: 1
+
+Example 2:
+Input:
+             9
+              \
+               10
+                \
+                 11
+Output: 9
+
+Your Task:
+The task is to complete the function minValue() which takes root as the argument and returns the minimum element of BST. If the tree is empty, there is no minimum element, so return -1 in that case.
+
+Expected Time Complexity: O(Height of the BST)
+Expected Auxiliary Space: O(1).
+
+// My Approach and CODE is :
+
+class Solution {
+  public:
+    int minValue(Node* root) {
+
+        // we will take min variable to store minimum value.
+        int min=INT_MAX;
+
+        // we will take queue to insert address of left and right for traverse.
+        queue<Node*>q;
+        q.push(root);
+        
+        while(!q.empty()){
+            Node*temp=q.front();
+            q.pop();
+
+            // here we will check if temp->data < min then min value will be temp->data.
+            if(min>temp->data){
+                min=temp->data;
+            }
+            // here we are storing address of left if left node is present of temp.
+            if(temp->left){
+                q.push(temp->left);
+            }
+            // here we are storing address of right if right node is present of temp.
+            if(temp->right){
+                q.push(temp->right);
+            }
+        }
+        // After end of loop we will have min value.
+        return min;
+    }
+};
