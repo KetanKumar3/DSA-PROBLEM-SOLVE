@@ -1,0 +1,54 @@
+Question Link : ""
+
+Question is : Sum Of Left Leaves.
+
+Given the root of a binary tree, return the sum of all left leaves.
+A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
+
+ Example 1:
+Input: root = [3,9,20,null,null,15,7]
+Output: 24
+
+Explanation: There are two left leaves in the binary tree, with values 9 and 15 respectivelyExample 2:
+
+Input: root = [1]
+Output: 0
+ 
+
+// My Approach and CODE is :
+
+class Solution {
+public:
+    void print(TreeNode*root,int &sum,TreeNode*temp){
+        if(root==NULL){
+            return;
+        }
+
+        // it shows leaf node because if left and right will be NULL then it will called leaf Node.
+        if(!root->left && !root->right){
+
+            // if element is present in left then add them.
+            if(temp && temp->left==root){
+                sum+=root->val;
+            }
+            return;
+        }
+        // it is for left traversal.
+        print(root->left,sum,root);
+
+        // it is for right traversal.
+        print(root->right,sum,root);
+    }
+    int sumOfLeftLeaves(TreeNode* root) {
+        // here we will store sum of left leave nodes in sum variable. 
+        int sum=0;
+
+        // i have create temp for check element is in left or not if left then value will be store in sum.
+        TreeNode*temp=NULL;
+
+        print(root,sum,temp);
+
+        // after traverse the every node in tree. now we have sum of leaf node in sum variable.
+        return sum;
+    }
+};
