@@ -1,0 +1,42 @@
+Question link : "https://leetcode.com/problems/same-tree/description/"
+
+Question is : Same Tree.
+
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+ Example 1:
+Input: p = [1,2,3], q = [1,2,3]
+Output: true
+
+Example 2:
+Input: p = [1,2], q = [1,null,2]
+Output: false
+
+
+// My Approach and CODE is :
+
+class Solution {
+public:
+    bool find(TreeNode* p, TreeNode* q){
+        
+        if(!p && !q){
+            return 1;
+        }
+        // if left is NULL and right is not NULL or left is not NULL and right is NULL then it will be not equal
+        if((p && !q) || (!p && q)){
+            return 0;
+        }
+
+        // if first tree and second tree value is not equal.
+        if(p->val!=q->val){
+            return 0;
+        }
+
+        // if first tree and second tree value is equal then it will be traverse both tree left side and right side.
+        return find(p->left,q->left) && find(p->right,q->right);
+    }
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+         return find(p,q);
+    }
+};
