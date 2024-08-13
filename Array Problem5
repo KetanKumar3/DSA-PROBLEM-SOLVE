@@ -1,0 +1,68 @@
+Question Link is : ""
+
+Question is : Indexes of Subarray Sum
+
+Given an unsorted array arr of size n that contains only non negative integers, find a sub-array (continuous elements) that has sum equal to s.
+You mainly need to return the left and right indexes(1-based indexing) of that subarray.
+
+In case of multiple subarrays, return the subarray indexes which come first on moving from left to right. If no such subarray exists return an array consisting of element -1.
+
+Examples:
+Input: arr[] = [1,2,3,7,5], n = 5, s = 12
+Output: 2 4
+
+Input: arr[] = [1,2,3,4,5,6,7,8,9,10], n = 10, s = 15,
+Output: 1 5
+
+
+My Approach and CODE is :
+
+// First Approach is
+
+class Solution {
+  public:
+    vector<int> subarraySum(vector<int> arr, int n, long long s) {
+        vector<int>temp;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                sum+=arr[j];
+                if(sum==s){
+                    temp.push_back(i+1);
+                    temp.push_back(j+1);
+                    return temp;
+                }
+                else if(sum>s){
+                    break;
+                }
+            }
+            sum=0;
+        }
+        temp.push_back(-1);
+        return temp;
+    }
+};
+
+// it will take O(N^2) complexity. in question we said solve in O(N). then it will solve using Sliding Window Approach.
+
+
+// Second Approach ( Sliding Window )
+
+class Solution {
+  public:
+    vector<int> subarraySum(vector<int> arr, int n, long long s) {
+        int k=0;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            while(sum>s && k<i){
+                sum-=arr[k];
+                k++;
+            }
+            if(sum==s){
+                return {k+1,i+1};
+            }
+        }
+        return {-1};
+    }
+};
